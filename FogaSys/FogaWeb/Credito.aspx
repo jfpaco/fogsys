@@ -489,55 +489,131 @@
                 <td>
                     <asp:DropDownList ID="cboDescTcred" Width="200" runat="server" AppendDataBoundItems="true" AutoPostBack="True" OnSelectedIndexChanged="cboDescTcred_SelectedIndexChanged">
                         <asp:ListItem Value="Seleccionar...">Seleccionar...</asp:ListItem>
-                        <asp:ListItem Value="1">FOGACINTRA</asp:ListItem>
-                        <asp:ListItem Value="2">FODEINTRA</asp:ListItem>
-                        <asp:ListItem Value="3">FOINVIPRO</asp:ListItem>
-                        <asp:ListItem Value="4">PyME</asp:ListItem>
-                        <asp:ListItem Value="5">Fondo Municipal</asp:ListItem>
                     </asp:DropDownList>
                 </td>
             </tr>
         </table>
-        <table style="border-top:0px solid #ccc;">
+        <table style="border-top: 0px solid #ccc;">
             <tr>
-                <td class="izquierda" colspan="2">
-                    Características del Crédito Seleccionado
+                <td class="izquierda" colspan="6">Características del Crédito Seleccionado
                 </td>
             </tr>
             <tr>
-                <td>
-                    Fondo
+                <td>Monto Máximo
                 </td>
                 <td>
-                    <asp:Label ID="lblDescTcred" runat="server" Text=""></asp:Label>
-                </td>               
-            </tr>
-            <tr>
-                <td>
-                    Monto Máximo
+                    <asp:Label ID="lblTcredFogaMontoMax" runat="server" Text="" CssClass="lblTcredFogaMontoMax"></asp:Label>
                 </td>
-                <td>
-                    <asp:Label ID="lblTcredFogaMontoMax" runat="server" Text=""></asp:Label>
-                </td>               
+                <td>Monto Mínimo
+                </td>
+                <td colspan="3">
+                    <asp:Label ID="lblDescMontoMin" runat="server" Text="" CssClass="lblDescMontoMin"></asp:Label>
+                </td>
             </tr>
             <tr>
-                <td>
-                    Tasa ordinaria
+                <td>Tasa ordinaria
                 </td>
                 <td>
                     <asp:Label ID="lblTcredFogaTord" runat="server" Text=""></asp:Label>
-                </td>               
-            </tr>
-            <tr>
-                <td>
-                    Tasa por pronto pago
+                </td>
+                <td>Tasa por pronto pago
                 </td>
                 <td>
                     <asp:Label ID="lblTcredFogaTordPronto" runat="server" Text=""></asp:Label>
-                </td>               
+                </td>
+                <td>Tasa Moratoria
+                </td>
+                <td>
+                    <asp:Label ID="lblDescTasaIncum" runat="server" Text=""></asp:Label>
+                </td>
             </tr>
         </table>
     </asp:Panel>
+
+    <asp:Panel ID="pnlFondeoRecursos" runat="server">
+        <table style="border-top: 0px solid #ccc;">
+            <tr>
+                <td class="wd75">Fondeo
+                </td>
+                <td>
+                    <asp:DropDownList ID="cboDescFondeo" Width="200" runat="server" AppendDataBoundItems="true" AutoPostBack="True" OnSelectedIndexChanged="cboDescFondeo_SelectedIndexChanged">
+                        <asp:ListItem Value="Seleccionar...">Seleccionar...</asp:ListItem>
+                    </asp:DropDownList>
+                </td>
+                <td>Plazo Mínimo:
+                </td>
+                <td>
+                    <asp:Label ID="lblDescPlazoMin" runat="server" Text="" CssClass="lblDescPlazoMin"></asp:Label>
+                </td>
+                <td>Plazo Máximo:
+                </td>
+                <td>
+                    <asp:Label ID="lblDescPlazoMax" runat="server" Text="" CssClass="lblDescPlazoMax"></asp:Label>
+                </td>
+            </tr>            
+        </table>
+        <table>
+            <tr>
+                <th colspan="4">
+                    Valor del Proyecto, Crédito Solicitado, Plazo y Gracia
+
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Costo total del Proyecto
+                </td>
+                <td>
+                    <asp:TextBox ID="txtCostoProyect" runat="server" MaxLength="15" CssClass="wd100"></asp:TextBox>
+                </td>
+                <td>
+                    Plazo solicitado para el Pago
+                </td>
+                <td>
+                    <asp:TextBox ID="txtPlazoMeses" runat="server" MaxLength="15" CssClass="wd100"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Cantidad Solicitada para el Crédito
+                </td>
+                <td>
+                    <asp:TextBox ID="txtMontoSolicit" runat="server" MaxLength="15" CssClass="wd100"></asp:TextBox>
+                </td>
+                <td>
+                    Periodio de Gracia solicitado
+                </td>
+                <td>
+                    <asp:TextBox ID="txtPlazoGracia" runat="server" MaxLength="15" CssClass="wd100"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Recursos Propios para aportar al Proyecto
+                </td>
+                <td>
+                    <asp:TextBox ID="txtRecPropios" runat="server" MaxLength="15" CssClass="wd100"></asp:TextBox>
+                </td>
+                <td>
+                    Otros recursos para aportar al Proyecto
+                </td>
+                <td>
+                    <asp:TextBox ID="txtOtrosRec" runat="server" MaxLength="15" CssClass="wd100"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <asp:Button ID="btnAgregarFondeo" runat="server" Text="Agregar" OnClick="btnAgregarFondeo_Click" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <asp:ListBox ID="lstFondeo" runat="server" Rows="4" Width="100%"></asp:ListBox>
+                </td>
+            </tr>
+        </table>
+    </asp:Panel>
+
 
 
 </asp:Content>

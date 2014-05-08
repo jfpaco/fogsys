@@ -62,6 +62,128 @@ public partial class Credito : System.Web.UI.Page
         }
     }
 
+    private void cargaFondos(DropDownList cbo)
+    {
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["FogaWeb"].ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "SELECT IdFondo, DescTipoFondo FROM TC_Fondo";
+            cmd.Connection = cnn;
+            cnn.Open();
+            cmd.ExecuteNonQuery();
+            cnn.Close();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable tblResultado = new DataTable();
+            da.Fill(tblResultado);
+            cbo.DataSource = tblResultado;
+            cbo.DataTextField = "DescTipoFondo";
+            cbo.DataValueField = "IdFondo";
+            cbo.DataBind();
+        }
+    }
+
+    private void getDescFondos(string idFondo)
+    {
+        if (idFondo == "Seleccionar...")
+        {
+            lblTcredFogaMontoMax.Text = "";
+            lblDescMontoMin.Text = "";
+            lblTcredFogaTord.Text = "";
+            lblTcredFogaTordPronto.Text = "";
+            lblTcredFogaTordPronto.Text = "";
+
+            cboDescFondeo.Items.Clear();
+            cboDescFondeo.Items.Add("Seleccionar...");
+
+            lblDescPlazoMin.Text = "";
+            lblDescPlazoMax.Text = "";
+            
+        }
+        else
+        {
+            using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["FogaWeb"].ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = "SELECT REPLACE(CONVERT(VARCHAR(20), CAST(DescMontoMax AS MONEY), 1), '.00', '') as DescMontoMax, REPLACE(CONVERT(VARCHAR(20), CAST(DescMontoMin AS MONEY), 1), '.00', '') as DescMontoMin, DescTasaOrdi, DescTasaPpago, DescTasaIncum FROM TC_Fondo WHERE IdFondo = @IdFondo";
+                cmd.Parameters.AddWithValue("@IdFondo", idFondo);
+                cmd.Connection = cnn;
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                cnn.Close();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable tblResultado = new DataTable();
+                da.Fill(tblResultado);
+
+                foreach (DataRow fila in tblResultado.Rows)
+                {
+                    lblTcredFogaMontoMax.Text = "$" + fila["DescMontoMax"].ToString();
+                    lblDescMontoMin.Text = "$" + fila["DescMontoMin"].ToString();
+                    lblTcredFogaTord.Text = fila["DescTasaOrdi"].ToString();
+                    lblTcredFogaTordPronto.Text = fila["DescTasaPpago"].ToString();
+                    lblDescTasaIncum.Text = fila["DescTasaIncum"].ToString();
+                }
+
+                cboDescFondeo.Items.Clear();
+                cboDescFondeo.Items.Add("Seleccionar...");
+                SqlCommand cmd2 = new SqlCommand();
+                cmd2.CommandType = System.Data.CommandType.Text;
+                cmd2.CommandText = "SELECT IdFondeo, DescFondeo FROM TC_Fondeo WHERE IdFondo = @IdFondo";
+                cmd2.Parameters.AddWithValue("@IdFondo", idFondo);
+                cmd2.Connection = cnn;
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                cnn.Close();
+                SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+                DataTable tblResultado2 = new DataTable();
+                da2.Fill(tblResultado2);
+                cboDescFondeo.DataSource = tblResultado2;
+                cboDescFondeo.DataTextField = "DescFondeo";
+                cboDescFondeo.DataValueField = "IdFondeo";
+                cboDescFondeo.DataBind();
+
+                lblDescPlazoMin.Text = "";
+                lblDescPlazoMax.Text = "";
+                
+            }
+        }
+    }
+
+    private void getDescFondeo(string idFondeo)
+    {
+        if (idFondeo == "Seleccionar...")
+        {
+            lblDescPlazoMin.Text = "";
+            lblDescPlazoMax.Text = "";
+        }
+        else
+        {
+            using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["FogaWeb"].ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = "SELECT * FROM TC_Fondeo WHERE IdFondeo = @IdFondeo";
+                cmd.Parameters.AddWithValue("@IdFondeo", idFondeo);
+                cmd.Connection = cnn;
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                cnn.Close();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable tblResultado = new DataTable();
+                da.Fill(tblResultado);
+
+                foreach (DataRow fila in tblResultado.Rows)
+                {
+                    lblDescPlazoMin.Text = fila["DescPlazoMin"].ToString();
+                    lblDescPlazoMax.Text = fila["DescPlazoMax"].ToString();
+                }
+
+            }
+        }
+
+    }
+
     protected void cargaDatosGral(long folio)
     {
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["FogaWeb"].ConnectionString))
@@ -87,7 +209,8 @@ public partial class Credito : System.Web.UI.Page
                 string fechaAlta = String.Format("{0:dd/MM/yyyy}", altaSat);
 
                 txtFaltaSat.Text = fechaAlta.Substring(0, 10);
-                if (fila["Tipo_RFC"].ToString() == "F") {
+                if (fila["Tipo_RFC"].ToString() == "F")
+                {
                     lblTipoPersona.Text = "Fisica";
                 }
                 else
@@ -106,8 +229,8 @@ public partial class Credito : System.Web.UI.Page
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "spGetActividad";
-            cmd.Parameters.AddWithValue("@Folio", folio);            
-            cmd.Parameters.AddWithValue("@Tipo", lblTipoPersona.Text.Substring(0,1));
+            cmd.Parameters.AddWithValue("@Folio", folio);
+            cmd.Parameters.AddWithValue("@Tipo", lblTipoPersona.Text.Substring(0, 1));
             cmd.Connection = cnn;
             cnn.Open();
             cmd.ExecuteNonQuery();
@@ -254,7 +377,7 @@ public partial class Credito : System.Web.UI.Page
         tblTemp.Columns.Add("CrediAcreed");
         tblTemp.Columns.Add("CrediMonto");
         tblTemp.Columns.Add("CrediFechLiquid");
-        tblTemp.Columns.Add("CrediSaldoActual");        
+        tblTemp.Columns.Add("CrediSaldoActual");
         return tblTemp;
     }
 
@@ -282,6 +405,9 @@ public partial class Credito : System.Web.UI.Page
             Session["tblAnte"] = tblAct;
             Session.Timeout = 100;
 
+            //Cargando Combo de Fondos
+            cargaFondos(cboDescTcred);
+
             StringBuilder displayValues = new StringBuilder();
             NameValueCollection postedValues = Request.Form;
             if (postedValues.AllKeys.Length > 2)
@@ -295,7 +421,7 @@ public partial class Credito : System.Web.UI.Page
                 long folio = Convert.ToInt64(lblFolio.Text);
                 cargaDatosGral(folio);
                 cargaActSCIAN(folio);
-                if (lblTipoPersona.Text.Substring(0,1) == "F")
+                if (lblTipoPersona.Text.Substring(0, 1) == "F")
                     cargaDatosPerFisica(folio);
                 if (lblTipoPersona.Text.Substring(0, 1) == "M")
                     cargaDatosPerMoral(folio);
@@ -307,7 +433,7 @@ public partial class Credito : System.Web.UI.Page
         }
     }
 
-    
+
 
     protected void btnAgregarCrediAnteced_Click(object sender, EventArgs e)
     {
@@ -340,7 +466,7 @@ public partial class Credito : System.Web.UI.Page
             cargaGrdCrediAnteced();
         }
     }
-    
+
     protected void grdCrediAnteced_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         if (e.CommandName == "Eliminar")
@@ -348,13 +474,49 @@ public partial class Credito : System.Web.UI.Page
             int index = Convert.ToInt32(e.CommandArgument);
             ((DataTable)Session["tblAnte"]).Rows.RemoveAt(index);
             cargaGrdCrediAnteced();
-            
+
         }
     }
 
-    #endregion
+
     protected void cboDescTcred_SelectedIndexChanged(object sender, EventArgs e)
     {
-
+        getDescFondos(cboDescTcred.SelectedValue);
     }
+
+
+    protected void cboDescFondeo_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        getDescFondeo(cboDescFondeo.SelectedValue);
+    }
+    protected void btnAgregarFondeo_Click(object sender, EventArgs e)
+    {
+        StringBuilder textoItem = new StringBuilder();
+        //item.Text = cboDescTcred.SelectedItem.Text + " - " + cboDescFondeo.SelectedItem.Text + ", ;
+        textoItem.Append(cboDescTcred.SelectedItem.Text);
+        textoItem.Append(" - ");
+        textoItem.Append(cboDescFondeo.SelectedItem.Text);
+        textoItem.Append(",");
+        textoItem.Append(txtCostoProyect.Text);
+        textoItem.Append(",");
+        textoItem.Append(txtPlazoMeses.Text);
+        textoItem.Append(",");
+        textoItem.Append(txtMontoSolicit.Text);
+        textoItem.Append(",");
+        textoItem.Append(txtPlazoGracia.Text);        
+        ListItem item = new ListItem();
+        item.Value = cboDescFondeo.SelectedValue;
+        item.Text = textoItem.ToString();
+        bool existe = false;
+        foreach (ListItem item2 in lstFondeo.Items)
+        {
+            if (item.Value == item2.Value)
+                existe = true;
+
+        }
+        if (!existe)
+            lstFondeo.Items.Add(item);
+    }
+
+    #endregion
 }
