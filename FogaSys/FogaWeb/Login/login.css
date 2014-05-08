@@ -1,0 +1,142 @@
+﻿html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+body {
+  line-height: 1;
+  text-align:center;
+  font-family:Verdana;
+  font-size:12px;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+ 
+/* No olvides definir estilos para focus */
+:focus {
+  outline: 0;
+}
+ 
+/* No olvides resaltar de alguna manera el texto insertado/borrado */
+ins {
+  text-decoration: none;
+}
+del {
+  text-decoration: line-through;
+}
+ 
+/* En el código HTML es necesario añadir cellspacing="0" */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+#contenedor {
+    width:960px;    
+    height:600px;
+    border: 1px solid transparent;
+    margin: 0 auto;
+    text-align:left;
+	background: #fff url('bgLogin.png') no-repeat;
+}
+
+#frmLogin {
+    border: 0px solid #ff6a00;
+    padding:10px;
+}
+input[type="text"], input[type="password"]{
+	width:260px;
+	font-size: 12pt;
+	padding: 0px 5px;	
+	height:40px;
+	height:25px\9;	
+	padding: 6px 5px\9;
+}
+
+
+input[type="text"]{
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid transparent;;
+}
+
+input[type="text"]:focus{
+	outline:none;
+	border: 1px solid #0b509f
+}
+
+
+
+input[type="password"]{
+	border: 1px solid #ccc;	
+}
+
+input[type="password"]:focus{
+	border: 1px solid #0b509f;	
+}
+
+.remember{
+	color: #0a4383;
+	font-size: 13px;
+	
+}
+
+input[type="checkbox"]{
+	margin: 14px 0px;
+}
+
+input[type="submit"]{
+	border: none;
+	width:274px;
+	height: 34px;	
+	background: #fff url("btn_Iniciar_Sesion.png") no-repeat;
+}
+
+input[type="submit"]:hover {
+cursor: pointer !important;
+	background: #fff url("btn_Iniciar_Sesion_hover.png") no-repeat;
+	-moz-box-shadow: 0 0 3px #999; -webkit-box-shadow: 0 0 3px #999; box-shadow: 0 0 3px #999; 
+}
+.tbl-login, .tbl-login td {
+    border:0px solid Blue;
+	border-spacing:0px;
+    width:100%;    
+}
+
+    .tbl-login td {
+        padding:0px;   
+		border-collapse:collapse;
+		border-spacing:0px;		
+    }
+ 
+ .centrarHV{
+     width:300px;     
+     height:200px;
+     position:relative;
+     left:50%;
+     top:70%;
+     border:0px solid Blue;
+     margin:-150px 0 0 -150px;
+}

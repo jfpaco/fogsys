@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Principal.master.cs" Inherits="Principal" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Fogacintra Web</title>
+    <link href="principal.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Menu
+            $("ul li:has(ul)").hover(function (e) {                
+                $(this).find('a:first').css({ 'background-color': "#2961a2" });
+                $(this).find('ul').css({ display: "block" });
+            }, function (e) {
+                $(this).find('a:first').css({ 'background-color': "transparent" });
+                $(this).find('ul').css({ display: "none" });
+            });
+        })
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server" enctype="application/x-www-form-urlencoded">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">            
+        </asp:ScriptManager>        
+        <div id="contenedor">
+            <header id="cabecera">
+                <img src="Imagenes/logoFogacintra.png" alt="FogaWeb" />
+                <div id="login">
+                    <span>Usuario: <asp:LoginName ID="LoginName1" runat="server" />
+                        <asp:LoginStatus ID="LoginStatus1" runat="server" /> </span>
+                </div>
+            </header>
+            <nav id="menu">
+                <ul class="menu">
+                    <li><a href="#" title="">Promoción del Crédito</a>
+                        <ul>
+                            <li>
+                                <a href="Prospecto.aspx?tip=nuevo" title="">
+                                    Alta Nuevo Prospecto
+                                </a>                                
+                            </li>
+                            <li>
+                                <a href="CuestionarioFaltante.aspx" title="Cuestionario Pre Diagnóstico">
+                                    Continuar Captura de Cuestionario de PreDiagnostico
+                                </a>
+                            </li>
+                            <li>
+                                <a href="ModificarProspecto.aspx" title="">
+                                    Alta Crédito
+                                </a>
+                            </li>                            
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <section id="contenido">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </section>
+            <footer id="pie">
+                Sistema de créditos FogacintraWeb
+            </footer>
+        </div>
+    </form>
+</body>
+</html>
+

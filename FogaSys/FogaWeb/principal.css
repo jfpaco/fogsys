@@ -1,0 +1,365 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header, section, footer, aside, nav, article, figure, figcaption, hgroup {
+    display: block;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+h1 {
+    font: bold 15px verdana;
+    border-bottom: 1px solid #d9d9d9;
+    color: #0a4383;
+}
+
+h2 {
+    font: bold 13px verdana;
+}
+
+h3 {
+    font: bold 12px verdana;
+}
+
+h4 {
+    font: normal 12px verdana;
+}
+
+input [type="text"] {
+    z-index: -1;
+}
+
+.centrado {
+    text-align: center;
+}
+
+.justificado {
+    text-align: justify;
+}
+
+.derecha {
+    text-align: right;
+}
+
+.izquierda {
+    text-align: left;
+}
+
+.datos{
+    font-weight:normal;
+}
+
+body {
+    line-height: 1;
+    text-align: center;
+    font-family: Verdana;
+    font-size: 12px;
+    background-color: #fff;
+}
+
+#contenedor {
+    width: 960px;
+    margin: 5px auto;
+    text-align: left;
+}
+
+#cabecera {
+    background: #fff url("Imagenes/bgSombra.png") no-repeat;
+    border: 0px solid #999;
+    padding: 25px 10px 10px 10px;
+    height: 75px;
+    text-align: center;
+}
+
+    #cabecera img {
+        margin: 10px 0px 0px 0px;
+    }
+
+    #cabecera #login {
+        display: block;
+        border: 0px solid Red;
+        text-align: right;
+    }
+
+#menu {
+    background: #0a4383;
+    border: 0px solid Yellow;
+    height: 30px;
+}
+
+    #menu ul {
+        border: 0px solid #b200ff;
+        display: block;
+    }
+
+    #menu li {
+        border: 0px solid Red;
+        height: 20px;
+        display: inline-block;
+        font: bold 12px verdana, sans-serif;
+        list-style: none;
+        color: #fff;
+    }
+
+        #menu li a {
+            display: inline-block;
+            padding: 7px 5px 7px 5px;
+            border: 0px solid Red;
+            color: white;
+            text-decoration: none;
+            z-index: 999;
+        }
+
+            #menu li a:hover {
+                background-color: #2961a2;
+            }
+
+    #menu ul li ul {
+        display: none;
+        position: relative;
+        background-color: #2961a2;
+        border: 1px solid #2961a2;
+        padding: 0;
+        list-style-type: none;
+        z-index: 999;
+    }
+
+    #menu li ul li {
+        height: 100%;
+        display: block;
+        border: 0px solid Green;
+        border-top: none;
+    }
+
+        #menu li ul li a:hover {
+            border-bottom: 1px solid #4580c4;
+            padding: 7px 5px 6px 5px;
+        }
+
+
+#contenido {
+    border: 0px solid #444;
+    min-height: 400px;
+    padding: 10px;
+}
+
+#pie {
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 3px;
+}
+
+/********************************
+***** Diseño de Formularios *****
+********************************/
+input[type='submit'] {
+    background: #0b509f;
+    display: inline-block;
+    color: white;
+    padding: 2px 5px;
+    border: 1px solid #0b509f;
+}
+
+    input[type='submit']:hover {
+        cursor: pointer;
+        background: #0f63c1;
+    }
+
+.titForm {
+    width: 100%;
+    padding: 0px;
+    margin: 3px 0px 7px 0px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border: 1px solid #ccc;
+    background-color: #fcfcfc;
+    border-collapse: collapse;
+}
+
+    table th {
+        padding: 6px 5px;
+        border: 1px solid #ccc;
+        background-color: #2a61a2;
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+    table tr td {
+        padding: 7px;
+        text-align: left;
+        vertical-align: top;
+        border-bottom: 1px solid #ccc;
+        font-weight:bold;
+        color: #333;
+        border-spacing: 0;
+    }
+
+        table tr td img {
+            vertical-align: middle;
+            padding: 0px 0px 3px 5px;
+        }
+
+        table tr td label {
+            font-weight: normal;
+        }
+
+        table tr td span input[type="radio"] {
+            margin: 0 3px 0 5px;
+        }
+
+.wd50 {
+    width: 50px;
+    max-width: 50px;
+}
+
+.wd75 {
+    width: 75px;
+    max-width: 75px;
+}
+
+.wd100 {
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+}
+
+.wd150 {
+    width: 150px;
+    max-width: 150px;
+}
+
+.wd200 {
+    width: 200px;
+    max-width: 200px;
+}
+
+.wd250 {
+    width: 250px;
+    max-width: 250px;
+}
+
+.wd270 {
+    width: 270px;
+    max-width: 270px;
+}
+
+.wd300 {
+    width: 300px;
+    max-width: 300px;
+}
+
+.wd350 {
+    width: 350px;
+    max-width: 350px;
+}
+
+.wd400 {
+    width: 400px;
+    max-width: 400px;
+}
+
+.grd {
+    width: 98%;
+    border-collapse: collapse;
+    -webkit-box-shadow: 3px 4px 5px 0px rgba(153, 153, 153, 0.75);
+    -moz-box-shadow: 3px 4px 5px 0px rgba(153, 153, 153, 0.75);
+    box-shadow: 3px 4px 5px 0px rgba(153, 153, 153, 0.75);
+    z-index: 999;
+    margin: 7px;
+}
+
+.grd {
+    border-collapse: collapse;
+}
+
+    .grd th {
+        padding: 3px 3px;
+        border: 1px solid #000;
+        background-color: #ccc;
+        color: #fff;
+        text-transform: capitalize;
+        vertical-align: central;
+    }
+
+    .grd td {
+        padding: 3px;
+        border: 1px solid #000;
+        background-color: #fff;
+        font-weight:normal;
+    }
+
+/*Acomodo de radios*/
+.radios {
+    vertical-align: middle;
+}
+
+/********************************
+********** FileUpload ***********
+********************************/
+
+
+.uploadStatus {
+    border: 0px solid red;
+    display: inline;
+    color: red;
+}
+
+.uploadButton {
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 3px 3px;
+    padding: 0px 5px 0px 0px;
+    text-align: right;
+    filter: none;
+    background: #f4f4f4 url('Imagenes/btnUpload2.png') 5px center no-repeat;
+    cursor: pointer !important;
+    display: inline-block;
+    margin: 2px;
+    width: 70px;
+    height: 25px;
+}
+
+    .uploadButton.hover {
+        -moz-box-shadow: 0 0 3px #999;
+        -webkit-box-shadow: 0 0 3px #999;
+        box-shadow: 0 0 3px #999;
+    }
+
+.delete {
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 3px 3px;
+    padding: 0px 5px 0px 0px;
+    text-align: right;
+    filter: none;
+    background: #f4f4f4 url('Imagenes/btnDelete.png') 5px center no-repeat;
+    cursor: pointer !important;
+    display: inline-block;
+    margin: 2px;
+    width: 80px;
+    height: 25px;
+}
+
+.nomArchivo {
+}
